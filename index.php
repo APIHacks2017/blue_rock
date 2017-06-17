@@ -41,11 +41,11 @@
          <form id='chennai_api_form'>
             <div class="form-group">
               <label for="email">Source:</label>
-              <input type="text" class="form-control" id="source" value="taramani">
+              <input type="text" class="form-control" id="source" value="Chennai">
             </div>
             <div class="form-group">
               <label for="pwd">Destination:</label>
-              <input type="text" class="form-control" id="destination" value="koyambedu">
+              <input type="text" class="form-control" id="destination" value="Delhi">
             </div>
             <button type="submit" class="btn btn-success" id='chennai_api_route'>Search</button>
           </form>
