@@ -131,8 +131,7 @@ $("document").ready(function(){
           $("#train_route").html("No train available");
         },
     });    
-
-
+/*
     //Flights location
     $.ajax({ 
       type: 'GET',
@@ -145,7 +144,7 @@ $("document").ready(function(){
               $depart = item.departure_airport_iata;
               $arrival = item.arrival_airport_iata;
 
-                    if($depart == 'MAA' && $arrival == 'DEL'){
+                  if($depart == 'MAA' && $arrival == 'DEL' && $("#source").val() == 'chennai' && $("#destination").val() == 'delhi'){
                     var fl = item.airline_iata;
                     var fno = [];
                      planes.push(fl);
@@ -162,7 +161,7 @@ $("document").ready(function(){
           });
           console.log(planes);
           }
-    });  
+    });  */
 
   });
 });
