@@ -33,6 +33,7 @@ $("document").ready(function(){
   $("#chennai_api_route").click(function(e){
     e.preventDefault();
      $(".flights-body").html("");
+     $(".restaurants-body").html("");
     $("#loader").show();
     $(".display-info-right").show();
     $(".info-div").hide();
@@ -45,7 +46,7 @@ $("document").ready(function(){
     setInterval(function(){                        
       $("#loader").hide();  
        $(".display-info-right").show();
-       $(".info-div").show(); }, 2000);
+       $(".info-div").show(); }, 3000);
 
     //Bus
     $.ajax({ 
@@ -119,7 +120,7 @@ $("document").ready(function(){
                             $content += "<div>"+item.restaurant.location.address+"</div></div></div>";
                          }  
                       });
-                      $(".restaurants-body").append($content);
+                      $(".restaurants-body").html($content);
 
                     },
                   error: function (data) {            
