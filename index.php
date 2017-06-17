@@ -34,7 +34,7 @@
     <div class="row">
     	<div class="col-xs-12">
       
-        <h2 class="page-title">Find Buses, Train, Restaurants and Direction</h2>
+        <h2 class="page-title">Find Buses, Train, Restaurants, Flights and Directions</h2>
         
         <!-- item list -->
         <div class="box-contianer col-xs-4 left-box-contianer">
@@ -55,12 +55,12 @@
             <div class="loader-div" id="loader" style="display: none"><img src="./assets/img/loader.gif"/></div>
             <div class="info-div" id="loader" style="display: none">
               <div class="row-info">
-                <div class="col-xs-3 nopadding left-label-form">Bus Route No.: </div>
+                <div class="col-xs-3 nopadding left-label-form">Chennai Local Bus Route : </div>
                 <div class="col-xs-9 nopadding" id="bus_route"></div>
               </div>
 
               <div class="row-info">
-                <div class="col-xs-3 nopadding left-label-form">Local Train Time & Type: </div>
+                <div class="col-xs-3 nopadding left-label-form">Chennai Local Train : </div>
                 <div class="col-xs-9 nopadding"><div id="train_time_route"></div></div>
               </div>
 

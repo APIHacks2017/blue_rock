@@ -6,32 +6,33 @@ $flights = "http://52.36.211.72:5555/gateway/Flights%20API/1.0/data/routes.json"
 $airlines = "http://52.36.211.72:5555/gateway/Flights%20API/1.0/data/airlines.json";
 
 $cities = {
-"Ahmedabad" : "AMD",
-"Bengaluru" : "BLR",
-"Chandigarh" : "IXC",
-"Chennai" : "MAA",
-"Coimbatore" : "CJB",
-"Delhi" : "DEL",
-"Hyderabad" : "HYD",
-"Jaipur" : "JAI",
-"Kochi" : "COK",
-"Kolkata" : "CCU",
-"Mumbai" : "BOM",
-"Patna" : "PAT",
-"Pune" : "PNQ",
-"Port Blair" : "IXZ",
-"Surat" : "STV",
-"Srinagar" : "SXR",
-"Thiruvananthapuram" : "TRV",
-"Tirupathi" : "TIR",
-"Varanasi" : "VNS",
-"Vishakapatnam" : "VTZ"
+"ahmedabad" : "AMD",
+"bengaluru" : "BLR",
+"chandigarh" : "IXC",
+"chennai" : "MAA",
+"coimbatore" : "CJB",
+"delhi" : "DEL",
+"hyderabad" : "HYD",
+"jaipur" : "JAI",
+"kochi" : "COK",
+"kolkata" : "CCU",
+"mumbai" : "BOM",
+"patna" : "PAT",
+"pune" : "PNQ",
+"port Blair" : "IXZ",
+"surat" : "STV",
+"srinagar" : "SXR",
+"thiruvananthapuram" : "TRV",
+"tirupathi" : "TIR",
+"varanasi" : "VNS",
+"vishakapatnam" : "VTZ"
 };
 
 $("document").ready(function(){
     
   $("#chennai_api_route").click(function(e){
     e.preventDefault();
+     $(".flights-body").html("");
     $("#loader").show();
     $(".display-info-right").show();
     $(".info-div").hide();
@@ -131,7 +132,8 @@ $("document").ready(function(){
           $("#train_route").html("No train available");
         },
     });    
-/*
+
+
     //Flights location
     $.ajax({ 
       type: 'GET',
@@ -139,12 +141,19 @@ $("document").ready(function(){
       'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
       url: $flights,          
       success: function (data) {  
-      console.log(data);
+        $fightSource = "";
+        $fightDes = "";
           $(data).each(function(i, item){              
               $depart = item.departure_airport_iata;
               $arrival = item.arrival_airport_iata;
+                var $fightSource = $cities[$("#source").val().toLowerCase().trim()];
+                var $fightDes = $cities[$("#destination").val().toLowerCase().trim()];
+                
+                if($fightSource !="" &&  $fightDes != "")
+                {
+                  //console.log($fightSource + ""+$fightDes + "" +$depart + "" +$arrival);
+                    if($depart ==  $fightSource && $arrival == $fightDes){
 
-                  if($depart == 'MAA' && $arrival == 'DEL' && $("#source").val() == 'chennai' && $("#destination").val() == 'delhi'){
                     var fl = item.airline_iata;
                     var fno = [];
                      planes.push(fl);
@@ -154,14 +163,35 @@ $("document").ready(function(){
                     });
                     fmap[fl] = fno;
                   }
-                
-              else {
-                 $(".flights-body").append("No Flights available");
-              }
+                }
           });
-          console.log(planes);
+          //console.log(planes);
+          if(planes != "")
+          {
+              $.ajax({ 
+                  type: 'GET',
+                  headers: {"x-Gateway-APIKey": "d0536187-7ac8-4a2e-a3d2-52033ceaa077", "Access-Control-Allow-Origin": 'http://localhost'},
+                  'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
+                  url: $airlines,          
+                  success: function (data) {  
+                      $content = "";     
+                      $(data).each(function(i, item){   
+                        if ($.inArray(item.iata, planes) != -1)
+                        {
+                            $content += "<div class='row-info-panel row'>";
+                            $content += "<div class='col-xs-12 nopadding'><a target='_blank' href="+item.name+">"+item.name+"</a></br>";
+                            $content += "<div>"+"Flights: " +fmap[item.iata] +"</br>";
+                            $content += "</div></div></div>";
+                         } 
+                                  
+                      });
+                      $(".flights-body").html($content);
+                    },
+                });
+           }
+           
           }
-    });  */
+    });  
 
   });
 });
